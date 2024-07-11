@@ -170,40 +170,7 @@
             <button type="submit" class="btn btn-primary btn-block">Salvar</button>
         </form>
     </div>
-    <script>
-        document.getElementById('clienteForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
-            const formData = new FormData(this);
-            const jsonObject = {};
-
-            formData.forEach((value, key) => {
-                jsonObject[key] = value;
-            });
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonObject)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao salvar os dados');
-                }
-                return response.text();
-            })
-            .then(data => {
-                alert('Dados salvos com sucesso');
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao salvar os dados');
-            });
-        });
-    </script>
+    
     <!-- Scripts do Bootstrap e Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
