@@ -53,113 +53,107 @@
         <form id="clienteForm">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome" required>
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço:</label>
-                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereço">
+                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereço (incluindo CEP)" required>
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone">
+                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone" required>
             </div>
             <div class="form-group">
                 <label for="instagram">Instagram:</label>
-                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Digite o Instagram">
+                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Digite o Instagram" required>
             </div>
             <div class="form-group">
                 <label for="nasc">Nascimento:</label>
-                <input type="date" class="form-control" id="nasc" name="nasc">
+                <input type="date" class="form-control" id="nasc" name="nasc" required>
             </div>
             <div class="form-group">
                 <label for="aspecto">Aspecto:</label>
-                <select class="form-control" id="aspecto" name="aspecto">
+                <select class="form-control" id="aspecto" name="aspecto" required>
                     <option value="misto">Misto</option>
                     <option value="outro">Outro</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="cor_nat_raiz">Cor Natural da Raiz:</label>
-                <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz" placeholder="Digite a cor natural da raiz">
+                <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz" placeholder="Digite a cor natural da raiz" required>
             </div>
             <div class="form-group">
-                <label>Tem química?</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="tem_quimica_sim" name="tem_quimica" value="sim">
-                    <label class="form-check-label" for="tem_quimica_sim">Sim</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="tem_quimica_nao" name="tem_quimica" value="nao">
-                    <label class="form-check-label" for="tem_quimica_nao">Não</label>
-                </div>
+                <label for="tem_quimica">Tem química?</label>
+                <select class="form-control" id="tem_quimica" name="tem_quimica" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
             </div>
             <div class="form-group">
-                <label>Faz tratamentos?</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="faz_tratamentos_sim" name="faz_tratamentos" value="sim">
-                    <label class="form-check-label" for="faz_tratamentos_sim">Sim</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="faz_tratamentos_nao" name="faz_tratamentos" value="nao">
-                    <label class="form-check-label" for="faz_tratamentos_nao">Não</label>
-                </div>
+                <label for="faz_tratamentos">Faz tratamentos?</label>
+                <select class="form-control" id="faz_tratamentos" name="faz_tratamentos" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="frequencia">Qual frequência?</label>
-                <input type="text" class="form-control" id="frequencia" name="frequencia" placeholder="Digite a frequência">
+                <input type="text" class="form-control" id="frequencia" name="frequencia" placeholder="Digite a frequência" required>
             </div>
             <div class="form-group">
                 <label>Comprimento:</label><br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="comprimento_curto" name="comprimento" value="curto">
+                    <input class="form-check-input" type="radio" id="comprimento_curto" name="comprimento" value="curto" required>
                     <label class="form-check-label" for="comprimento_curto">Curto</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="comprimento_medio" name="comprimento" value="medio">
+                    <input class="form-check-input" type="radio" id="comprimento_medio" name="comprimento" value="medio" required>
                     <label class="form-check-label" for="comprimento_medio">Médio</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="comprimento_longo" name="comprimento" value="longo">
+                    <input class="form-check-input" type="radio" id="comprimento_longo" name="comprimento" value="longo" required>
                     <label class="form-check-label" for="comprimento_longo">Longo</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="comprimento_ext_longo" name="comprimento" value="ext_longo">
+                    <input class="form-check-input" type="radio" id="comprimento_ext_longo" name="comprimento" value="ext_longo" required>
                     <label class="form-check-label" for="comprimento_ext_longo">Ext. Longo</label>
                 </div>
             </div>
             <div class="form-group">
                 <label>Espessura:</label><br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="espessura_fino" name="espessura" value="fino">
+                    <input class="form-check-input" type="radio" id="espessura_fino" name="espessura" value="fino" required>
                     <label class="form-check-label" for="espessura_fino">Fino</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="espessura_medio" name="espessura" value="medio">
+                    <input class="form-check-input" type="radio" id="espessura_medio" name="espessura" value="medio" required>
                     <label class="form-check-label" for="espessura_medio">Médio</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="espessura_grosso" name="espessura" value="grosso">
+                    <input class="form-check-input" type="radio" id="espessura_grosso" name="espessura" value="grosso" required>
                     <label class="form-check-label" for="espessura_grosso">Grosso</label>
                 </div>
             </div>
             <div class="form-group">
                 <label>Densidade:</label><br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="densidade_baixa" name="densidade" value="baixa">
+                    <input class="form-check-input" type="radio" id="densidade_baixa" name="densidade" value="baixa" required>
                     <label class="form-check-label" for="densidade_baixa">Baixa</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="densidade_media" name="densidade" value="media">
+                    <input class="form-check-input" type="radio" id="densidade_media" name="densidade" value="media" required>
                     <label class="form-check-label" for="densidade_media">Média</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="densidade_alta" name="densidade" value="alta">
+                    <input class="form-check-input" type="radio" id="densidade_alta" name="densidade" value="alta" required>
                     <label class="form-check-label" for="densidade_alta">Alta</label>
                 </div>
             </div>
             <div class="form-group">
-                <label>Lava o cabelo com qual frequência?</label>
-                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência">
+                <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência" required>
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
@@ -173,38 +167,31 @@
         </form>
     </div>
     <script>
-        document.getElementById('clienteForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
-            const formData = new FormData(this);
-            const jsonObject = {};
+        document.addEventListener('DOMContentLoaded', function() {
+            // Máscaras de preenchimento
+            $('#endereco').mask('00000-000');
+            $('#telefone').mask('(00) 0000-0000');
+            $('#nasc').mask('00/00/0000');
 
-            formData.forEach((value, key) => {
-                jsonObject[key] = value;
-            });
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonObject)
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert('Dados salvos com sucesso');
-                this.reset();
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao salvar os dados');
-            });
+            // Validação do formulário usando Bootstrap
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
         });
     </script>
     <!-- Scripts do JavaScript do Bootstrap e do Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Plugin para máscaras de input -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </body>
 </html>
