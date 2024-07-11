@@ -4,85 +4,181 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Controle de Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+    </style>
 </head>
 <body>
-    
-    <h1>Ficha de Atendimento do Cliente</h1>
-    <form>
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome"><br><br>
+    <div class="container">
+        <h1>Ficha de Atendimento do Cliente</h1>
+        <form id="clienteForm">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome">
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" id="endereco" name="endereco">
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="text" class="form-control" id="telefone" name="telefone">
+            </div>
+            <div class="form-group">
+                <label for="instagram">Instagram:</label>
+                <input type="text" class="form-control" id="instagram" name="instagram">
+            </div>
+            <div class="form-group">
+                <label for="nasc">Nascimento:</label>
+                <input type="date" class="form-control" id="nasc" name="nasc">
+            </div>
+            <div class="form-group">
+                <label for="aspecto">Aspecto:</label>
+                <select class="form-control" id="aspecto" name="aspecto">
+                    <option value="misto">Misto</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cor_nat_raiz">Cor Natural da Raiz:</label>
+                <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz">
+            </div>
+            <div class="form-group">
+                <label>Tem química?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="tem_quimica_sim" name="tem_quimica" value="sim">
+                    <label class="form-check-label" for="tem_quimica_sim">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="tem_quimica_nao" name="tem_quimica" value="nao">
+                    <label class="form-check-label" for="tem_quimica_nao">Não</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Faz tratamentos?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="faz_tratamentos_sim" name="faz_tratamentos" value="sim">
+                    <label class="form-check-label" for="faz_tratamentos_sim">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="faz_tratamentos_nao" name="faz_tratamentos" value="nao">
+                    <label class="form-check-label" for="faz_tratamentos_nao">Não</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="frequencia">Qual frequência?</label>
+                <input type="text" class="form-control" id="frequencia" name="frequencia">
+            </div>
+            <div class="form-group">
+                <label>Comprimento:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_curto" name="comprimento" value="curto">
+                    <label class="form-check-label" for="comprimento_curto">Curto</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_medio" name="comprimento" value="medio">
+                    <label class="form-check-label" for="comprimento_medio">Médio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_longo" name="comprimento" value="longo">
+                    <label class="form-check-label" for="comprimento_longo">Longo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_ext_longo" name="comprimento" value="ext_longo">
+                    <label class="form-check-label" for="comprimento_ext_longo">Ext. Longo</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Espessura:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_fino" name="espessura" value="fino">
+                    <label class="form-check-label" for="espessura_fino">Fino</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_medio" name="espessura" value="medio">
+                    <label class="form-check-label" for="espessura_medio">Médio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_grosso" name="espessura" value="grosso">
+                    <label class="form-check-label" for="espessura_grosso">Grosso</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Densidade:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_baixa" name="densidade" value="baixa">
+                    <label class="form-check-label" for="densidade_baixa">Baixa</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_media" name="densidade" value="media">
+                    <label class="form-check-label" for="densidade_media">Média</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_alta" name="densidade" value="alta">
+                    <label class="form-check-label" for="densidade_alta">Alta</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Lava o cabelo com qual frequência?</label>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia">
+            </div>
+            <div class="form-group">
+                <label for="obs">Observações:</label>
+                <textarea class="form-control" id="obs" name="obs" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="procedimentos">Procedimentos Realizados:</label>
+                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('clienteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
+            const formData = new FormData(this);
+            const jsonObject = {};
 
-        <label for="endereco">Endereço:</label><br>
-        <input type="text" id="endereco" name="endereco"><br><br>
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
 
-        <label for="telefone">Telefone:</label><br>
-        <input type="text" id="telefone" name="telefone"><br><br>
-
-        <label for="instagram">Instagram:</label><br>
-        <input type="text" id="instagram" name="instagram"><br><br>
-
-        <label for="nasc">Nascimento:</label><br>
-        <input type="date" id="nasc" name="nasc"><br><br>
-
-        <label for="aspecto">Aspecto:</label><br>
-        <input type="radio" id="aspecto_misto" name="aspecto" value="misto">
-        <label for="aspecto_misto">Misto</label><br><br>
-
-        <label for="cor_nat_raiz">Cor Nat. Raiz:</label><br>
-        <input type="text" id="cor_nat_raiz" name="cor_nat_raiz"><br><br>
-
-        <label>Tem Química?</label><br>
-        <input type="radio" id="tem_quimica_sim" name="tem_quimica" value="sim">
-        <label for="tem_quimica_sim">Sim</label><br>
-        <input type="radio" id="tem_quimica_nao" name="tem_quimica" value="nao">
-        <label for="tem_quimica_nao">Não</label><br><br>
-
-        <label>Faz Tratamentos?</label><br>
-        <input type="radio" id="faz_tratamentos_sim" name="faz_tratamentos" value="sim">
-        <label for="faz_tratamentos_sim">Sim</label><br>
-        <input type="radio" id="faz_tratamentos_nao" name="faz_tratamentos" value="nao">
-        <label for="faz_tratamentos_nao">Não</label><br><br>
-
-        <label for="frequencia">Qual Frequência?</label><br>
-        <input type="text" id="frequencia" name="frequencia"><br><br>
-
-        <label>Comprimento:</label><br>
-        <input type="radio" id="comprimento_curto" name="comprimento" value="curto">
-        <label for="comprimento_curto">Curto</label><br>
-        <input type="radio" id="comprimento_medio" name="comprimento" value="medio">
-        <label for="comprimento_medio">Médio</label><br>
-        <input type="radio" id="comprimento_longo" name="comprimento" value="longo">
-        <label for="comprimento_longo">Longo</label><br>
-        <input type="radio" id="comprimento_ext_longo" name="comprimento" value="ext_longo">
-        <label for="comprimento_ext_longo">Ext. Longo</label><br><br>
-
-        <label>Espessura:</label><br>
-        <input type="radio" id="espessura_fino" name="espessura" value="fino">
-        <label for="espessura_fino">Fino</label><br>
-        <input type="radio" id="espessura_medio" name="espessura" value="medio">
-        <label for="espessura_medio">Médio</label><br>
-        <input type="radio" id="espessura_grosso" name="espessura" value="grosso">
-        <label for="espessura_grosso">Grosso</label><br><br>
-
-        <label>Densidade:</label><br>
-        <input type="radio" id="densidade_baixa" name="densidade" value="baixa">
-        <label for="densidade_baixa">Baixa</label><br>
-        <input type="radio" id="densidade_media" name="densidade" value="media">
-        <label for="densidade_media">Média</label><br>
-        <input type="radio" id="densidade_alta" name="densidade" value="alta">
-        <label for="densidade_alta">Alta</label><br><br>
-
-        <label for="lava_frequencia">Lava o cabelo qual frequência?</label><br>
-        <input type="text" id="lava_frequencia" name="lava_frequencia"><br><br>
-
-        <label for="obs">Observações:</label><br>
-        <textarea id="obs" name="obs"></textarea><br><br>
-
-        <label for="procedimentos">Procedimentos Realizados:</label><br>
-        <textarea id="procedimentos" name="procedimentos"></textarea><br><br>
-
-        <input type="submit" value="Salvar">
-    </form>
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                this.reset();
+            })
+            .catch(error => console.error('Erro:', error));
+        });
+    </script>
 </body>
 </html>
 
