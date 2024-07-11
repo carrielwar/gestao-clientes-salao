@@ -172,7 +172,43 @@
     </div>
     
 
+<script>
+    document.getElementById('clienteForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita o envio padrão do formulário
 
+        // Obtém os dados do formulário
+        const formData = new FormData(this);
+
+        // Converte os dados do formulário para objeto JSON
+        const jsonData = {};
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+
+        // Envia os dados para o servidor
+        fetch('http://localhost:3000', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jsonData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao enviar os dados.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dados enviados com sucesso:', data);
+            // Aqui você pode adicionar lógica para mostrar uma mensagem de sucesso ao usuário
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            // Aqui você pode adicionar lógica para mostrar uma mensagem de erro ao usuário
+        });
+    });
+</script>
 
     <!-- Scripts do Bootstrap e Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
