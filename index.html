@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -171,31 +171,58 @@
         </form>
     </div>
     <script>
-        document.getElementById('clienteForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
-            const formData = new FormData(this);
-            const jsonObject = {};
-
-            formData.forEach((value, key) => {
-                jsonObject[key] = value;
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('cpf').addEventListener('blur', function() {
+                const cpf = this.value.trim();
+                if (cpf) {
+                    fetch(`http://localhost:3000/clientes/${cpf}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data) {
+                                document.getElementById('nome').value = data.nome;
+                                document.getElementById('endereco').value = data.endereco;
+                                document.getElementById('telefone').value = data.telefone;
+                                document.getElementById('instagram').value = data.instagram;
+                                document.getElementById('nasc').value = data.nascimento;
+                            } else {
+                                alert('Cliente não encontrado.');
+                                // Limpar os campos ou tomar outra ação adequada
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro:', error);
+                            alert('Erro ao buscar cliente.');
+                        });
+                }
             });
 
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonObject)
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert('Dados salvos com sucesso');
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao salvar os dados');
+            document.getElementById('clienteForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
+                const formData = new FormData(this);
+                const jsonObject = {};
+
+                formData.forEach((value, key) => {
+                    jsonObject[key] = value;
+                });
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert('Dados salvos com sucesso');
+                    this.reset();  // Limpar o formulário após o envio
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao salvar os dados');
+                });
             });
         });
     </script>
