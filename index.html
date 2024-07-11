@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #333;
+            background-color: #000;
             color: #fff;
             font-family: 'Times New Roman', Times, serif;
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
-            background: #444;
+            background: #222;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -25,19 +25,18 @@
         h1 {
             text-align: center;
             margin-bottom: 30px;
-            color: #fff;
         }
         .form-control, .form-check-label {
-            background: #555;
+            background: #333;
             color: #fff;
-            border: 1px solid #777;
+            border: 1px solid #555;
         }
         .form-control::placeholder {
-            color: #bbb;
+            color: #999;
         }
         .form-check-input {
-            background: #555;
-            border: 1px solid #777;
+            background: #333;
+            border: 1px solid #555;
         }
         .btn-primary {
             background-color: #007bff;
@@ -164,11 +163,12 @@
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
-                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite as observações"></textarea>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite suas observações"></textarea>
             </div>
             <div class="form-group">
-                <label for="procedimentos">Procedimentos Realizados:</
-</div>
+                <label for="procedimentos">Procedimentos Realizados:</label>
+                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="6" placeholder="Digite os procedimentos realizados"></textarea>
+            </div>
             <button type="submit" class="btn btn-primary btn-block">Salvar</button>
         </form>
     </div>
@@ -194,7 +194,6 @@
             .then(response => response.text())
             .then(data => {
                 alert('Dados salvos com sucesso');
-                this.reset();
             })
             .catch(error => {
                 console.error('Erro:', error);
