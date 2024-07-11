@@ -171,34 +171,6 @@
         </form>
     </div>
     
-<script>
-    document.getElementById('clienteForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita que o formulário seja submetido normalmente
-
-        // Coleta os dados do formulário
-        var formData = new FormData(this);
-
-        // Faz a requisição AJAX
-        fetch('http://localhost:3000/clientes', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Ocorreu um erro ao salvar os dados.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert('Dados enviados com sucesso!'); // Exibe uma mensagem de sucesso
-            // Aqui você pode redirecionar o usuário ou realizar outras ações após o sucesso
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Ocorreu um erro ao salvar os dados. Por favor, tente novamente.');
-        });
-    });
-</script>
     <!-- Scripts do Bootstrap e Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
