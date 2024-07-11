@@ -172,35 +172,6 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('cpf').addEventListener('blur', function() {
-                const cpf = this.value.trim();
-                if (cpf) {
-                    fetch(`http://localhost:3000/clientes/${cpf}`)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Erro ao buscar cliente.');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data) {
-                                document.getElementById('nome').value = data.nome;
-                                document.getElementById('endereco').value = data.endereco;
-                                document.getElementById('telefone').value = data.telefone;
-                                document.getElementById('instagram').value = data.instagram;
-                                document.getElementById('nasc').value = data.nascimento;
-                            } else {
-                                alert('Cliente não encontrado.');
-                                // Limpar os campos ou tomar outra ação adequada
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Erro ao buscar cliente:', error);
-                            alert('Erro ao buscar cliente.');
-                        });
-                }
-            });
-
             document.getElementById('clienteForm').addEventListener('submit', function(event) {
                 event.preventDefault();
 
