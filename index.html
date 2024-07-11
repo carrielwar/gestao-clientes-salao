@@ -171,39 +171,31 @@
         </form>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('clienteForm').addEventListener('submit', function(event) {
-                event.preventDefault();
+        document.getElementById('clienteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
+            const formData = new FormData(this);
+            const jsonObject = {};
 
-                const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
-                const formData = new FormData(this);
-                const jsonObject = {};
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
 
-                formData.forEach((value, key) => {
-                    jsonObject[key] = value;
-                });
-
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(jsonObject)
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao salvar os dados.');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    alert('Dados salvos com sucesso');
-                    this.reset();  // Limpar o formulário após o envio
-                })
-                .catch(error => {
-                    console.error('Erro ao salvar os dados:', error);
-                    alert('Erro ao salvar os dados');
-                });
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Dados salvos com sucesso');
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao salvar os dados');
             });
         });
     </script>
