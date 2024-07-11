@@ -53,7 +53,7 @@
         <form id="clienteForm">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome completo" required>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome" required>
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço:</label>
@@ -84,132 +84,154 @@
             </div>
             <div class="form-group">
                 <label for="tem_quimica">Tem química?</label>
-                <select class="form-control" id="
-<div class="form-group">
-    <label for="faz_tratamentos">Faz tratamentos?</label>
-    <select class="form-control" id="faz_tratamentos" name="faz_tratamentos" required>
-        <option value="">Selecione</option>
-        <option value="sim">Sim</option>
-        <option value="nao">Não</option>
-    </select>
-</div>
-<div class="form-group">
-    <label for="frequencia">Qual frequência?</label>
-    <input type="text" class="form-control" id="frequencia" name="frequencia" placeholder="Digite a frequência" required>
-</div>
-<div class="form-group">
-    <label>Comprimento:</label><br>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="comprimento_curto" name="comprimento" value="curto" required>
-        <label class="form-check-label" for="comprimento_curto">Curto</label>
+                <select class="form-control" id="tem_quimica" name="tem_quimica" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="faz_tratamentos">Faz tratamentos?</label>
+                <select class="form-control" id="faz_tratamentos" name="faz_tratamentos" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="frequencia">Qual frequência?</label>
+                <input type="text" class="form-control" id="frequencia" name="frequencia" placeholder="Digite a frequência" required>
+            </div>
+            <div class="form-group">
+                <label>Comprimento:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_curto" name="comprimento" value="curto" required>
+                    <label class="form-check-label" for="comprimento_curto">Curto</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_medio" name="comprimento" value="medio" required>
+                    <label class="form-check-label" for="comprimento_medio">Médio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_longo" name="comprimento" value="longo" required>
+                    <label class="form-check-label" for="comprimento_longo">Longo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_ext_longo" name="comprimento" value="ext_longo" required>
+                    <label class="form-check-label" for="comprimento_ext_longo">Ext. Longo</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Espessura:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_fino" name="espessura" value="fino" required>
+                    <label class="form-check-label" for="espessura_fino">Fino</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_medio" name="espessura" value="medio" required>
+                    <label class="form-check-label" for="espessura_medio">Médio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_grosso" name="espessura" value="grosso" required>
+                    <label class="form-check-label" for="espessura_grosso">Grosso</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Densidade:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_baixa" name="densidade" value="baixa" required>
+                    <label class="form-check-label" for="densidade_baixa">Baixa</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_media" name="densidade" value="media" required>
+                    <label class="form-check-label" for="densidade_media">Média</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_alta" name="densidade" value="alta" required>
+                    <label class="form-check-label" for="densidade_alta">Alta</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência" required>
+            </div>
+            <div class="form-group">
+                <label for="obs">Observações:</label>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite suas observações"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="procedimentos">Procedimentos Realizados:</label>
+                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="6" placeholder="Digite os procedimentos realizados"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+        </form>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="comprimento_medio" name="comprimento" value="medio" required>
-        <label class="form-check-label" for="comprimento_medio">Médio</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="comprimento_longo" name="comprimento" value="longo" required>
-        <label class="form-check-label" for="comprimento_longo">Longo</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="comprimento_ext_longo" name="comprimento" value="ext_longo" required>
-        <label class="form-check-label" for="comprimento_ext_longo">Ext. Longo</label>
-    </div>
-</div>
-<div class="form-group">
-    <label>Espessura:</label><br>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="espessura_fino" name="espessura" value="fino" required>
-        <label class="form-check-label" for="espessura_fino">Fino</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="espessura_medio" name="espessura" value="medio" required>
-        <label class="form-check-label" for="espessura_medio">Médio</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="espessura_grosso" name="espessura" value="grosso" required>
-        <label class="form-check-label" for="espessura_grosso">Grosso</label>
-    </div>
-</div>
-<div class="form-group">
-    <label>Densidade:</label><br>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="densidade_baixa" name="densidade" value="baixa" required>
-        <label class="form-check-label" for="densidade_baixa">Baixa</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="densidade_media" name="densidade" value="media" required>
-        <label class="form-check-label" for="densidade_media">Média</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="densidade_alta" name="densidade" value="alta" required>
-        <label class="form-check-label" for="densidade_alta">Alta</label>
-    </div>
-</div>
-<div class="form-group">
-    <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
-    <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência" required>
-</div>
-<div class="form-group">
-    <label for="obs">Observações:</label>
-    <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite suas observações"></textarea>
-</div>
-<div class="form-group">
-    <label for="procedimentos">Procedimentos Realizados:</label>
-    <textarea class="form-control" id="procedimentos" name="procedimentos" rows="6" placeholder="Digite os procedimentos realizados"></textarea>
-</div>
-<input type="hidden" id="clienteId" name="clienteId">
-<button type="submit" class="btn btn-primary btn-block">Salvar</button>
-</form>
-</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('clienteForm');
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Máscaras de preenchimento
-    $('#endereco').mask('00000-000');
-    $('#telefone').mask('(00) 0000-0000');
-    $('#nasc').mask('00/00/0000');
+            // Verificar se existe um cliente já cadastrado
+            form.nome.addEventListener('blur', function() {
+                const nome = form.nome.value;
+                const clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
+                const clienteExistente = clientes.find(cliente => cliente.nome === nome);
 
-    // Geração de ID aleatório para cliente
-    function generateClientId() {
-        return Math.random().toString(36).substr(2, 9); // Exemplo de ID aleatório de 9 caracteres alfanuméricos
-    }
+                if (clienteExistente) {
+                    form.endereco.value = clienteExistente.endereco;
+                    form.telefone.value = clienteExistente.telefone;
+                    form.instagram.value = clienteExistente.instagram;
+                    form.nasc.value = clienteExistente.nasc;
+                    form.aspecto.value = clienteExistente.aspecto;
+                    form.cor_nat_raiz.value = clienteExistente.cor_nat_raiz;
+                    form.tem_quimica.value = clienteExistente.tem_quimica;
+                    form.faz_tratamentos.value = clienteExistente.faz_tratamentos;
+                    form.frequencia.value = clienteExistente.frequencia;
+                    form.comprimento.value = clienteExistente.comprimento;
+                    form.espessura.value = clienteExistente.espessura;
+                    form.densidade.value = clienteExistente.densidade;
+                    form.lava_frequencia.value = clienteExistente.lava_frequencia;
+                    form.obs.value = clienteExistente.obs;
+                    form.procedimentos.value = clienteExistente.procedimentos;
+                }
+            });
 
-    // Evento de submit do formulário
-    document.getElementById('clienteForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita o envio padrão do formulário
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
 
-        // Gera um novo ID para o cliente
-        var clientId = generateClientId();
+                const cliente = {
+                    id: Date.now().toString(36) + Math.random().toString(36).substring(2),
+                    nome: form.nome.value,
+                    endereco: form.endereco.value,
+                    telefone: form.telefone.value,
+                    instagram: form.instagram.value,
+                    nasc: form.nasc.value,
+                    aspecto: form.aspecto.value,
+                    cor_nat_raiz: form.cor_nat_raiz.value,
+                    tem_quimica: form.tem_quimica.value,
+                    faz_tratamentos: form.faz_tratamentos.value,
+                    frequencia: form.frequencia.value,
+                    comprimento: form.comprimento.value,
+                    espessura: form.espessura.value,
+                    densidade: form.densidade.value,
+                    lava_frequencia: form.lava_frequencia.value,
+                    obs: form.obs.value,
+                    procedimentos: form.procedimentos.value
+                };
 
-        // Atribui o ID gerado ao campo hidden clienteId
-        document.getElementById('clienteId').value = clientId;
+                let clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
+                const index = clientes.findIndex(c => c.nome === cliente.nome);
 
-        // Aqui você pode enviar o formulário para o backend ou realizar outra ação
-        // Exemplo de envio usando fetch (necessário ajustar para o seu backend)
-        // fetch('/url-para-salvar-cliente', {
-        //     method: 'POST',
-        //     body: new FormData(document.getElementById('clienteForm'))
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     // Callback de sucesso
-        // })
-        // .catch(error => {
-        //     // Callback de erro
-        // });
+                if (index !== -1) {
+                    clientes[index] = cliente;
+                } else {
+                    clientes.push(cliente);
+                }
 
-        // Exibe um alerta com o ID gerado (para fins de demonstração)
-        alert('Cliente salvo com ID: ' + clientId);
-    });
-});
-</script>
-
-<!-- Scripts do JavaScript do Bootstrap e do Popper.js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Plugin para máscaras de input -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+                localStorage.setItem('clientes', JSON.stringify(clientes));
+                alert('Dados do cliente salvos com sucesso!');
+                form.reset();
+            });
+        });
+    </script>
 </body>
 </html>
