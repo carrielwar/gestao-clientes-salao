@@ -170,6 +170,87 @@
             <button type="submit" class="btn btn-primary btn-block">Salvar</button>
         </form>
     </div>
+
+<script>
+    const http = require('http');
+const fs = require('fs');
+const { parse } = require('querystring');
+
+const server = http.createServer((req, res) => {
+    if (req.method === 'POST') {
+        if (req.url === '/submit') {
+            collectRequestData(req, result => {
+                // Salvar os dados do formulário principal
+                const dados = {
+                    cpf: result.cpf,
+                    nome: result.nome,
+                    endereco: result.endereco,
+                    telefone: result.telefone,
+                    instagram: result.instagram,
+                    nasc: result.nasc,
+                    aspecto: result.aspecto,
+                    cor_nat_raiz: result.cor_nat_raiz,
+                    tem_quimica: result.tem_quimica,
+                    faz_tratamentos: result.faz_tratamentos,
+                    frequencia: result.frequencia,
+                    comprimento: result.comprimento,
+                    espessura: result.espessura,
+                    densidade: result.densidade,
+                    lava_frequencia: result.lava_frequencia,
+                    obs: result.obs,
+                    procedimentos: result.procedimentos
+                };
+                fs.writeFileSync('dados.json', JSON.stringify(dados));
+
+                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.end('Dados do formulário foram salvos com sucesso!');
+            });
+        } else if (req.url === '/clientes') {
+            collectRequestData(req, result => {
+                // Adicionar novo cliente
+                const novoCliente = {
+                    nome: result.clienteNome,
+                    email: result.clienteEmail,
+                    telefone: result.clienteTelefone
+                };
+
+                const clientes = JSON.parse(fs.readFileSync('clientes.json', 'utf8'));
+                clientes.push(novoCliente);
+                fs.writeFileSync('clientes.json', JSON.stringify(clientes));
+
+                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.end('Novo cliente foi adicionado com sucesso!');
+            });
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('Endpoint não encontrado');
+        }
+    } else {
+        res.writeHead(405, { 'Content-Type': 'text/plain' });
+        res.end('Método não permitido');
+    }
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
+
+function collectRequestData(request, callback) {
+    const FORM_URLENCODED = 'application/x-www-form-urlencoded';
+    if (request.headers['content-type'] === FORM_URLENCODED) {
+        let body = '';
+        request.on('data', chunk => {
+            body += chunk.toString();
+        });
+        request.on('end', () => {
+            callback(parse(body));
+        });
+    } else {
+        callback(null);
+    }
+}
+</script>
     
     <!-- Scripts do Bootstrap e Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
