@@ -171,38 +171,31 @@
         </form>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Máscara para CPF e Telefone
-            $('#cpf').mask('000.000.000-00');
-            $('#telefone').mask('(00) 00000-0000');
+        document.getElementById('clienteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
+            const formData = new FormData(this);
+            const jsonObject = {};
 
-            // Lidar com o envio do formulário
-            document.getElementById('clienteForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
 
-                const form = this;
-                const formData = new FormData(form);
-
-                try {
-                    const response = await fetch('http://localhost:3000/clientes', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Erro ao salvar cliente');
-                    }
-
-                    const data = await response.json();
-                    console.log('Cliente salvo com sucesso:', data);
-                    alert('Cliente salvo com sucesso!');
-
-                    // Limpar o formulário após o envio bem-sucedido
-                    form.reset();
-                } catch (error) {
-                    console.error('Erro ao salvar cliente:', error);
-                    alert('Erro ao salvar cliente. Verifique o console para mais detalhes.');
-                }
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Dados salvos com sucesso');
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao salvar os dados');
             });
         });
     </script>
