@@ -128,6 +128,9 @@
                     <label class="form-check-label" for="espessura_fino">Fino</label>
                 </div>
                 <div class="form-check form-check-inline">
+                    <input class="form-check-input" type
+     </div>
+                <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="espessura_medio" name="espessura" value="medio" required>
                     <label class="form-check-label" for="espessura_medio">Médio</label>
                 </div>
@@ -168,70 +171,50 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('clienteForm');
+            const clientes = {};
 
-            // Verificar se existe um cliente já cadastrado
-            form.nome.addEventListener('blur', function() {
-                const nome = form.nome.value;
-                const clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
-                const clienteExistente = clientes.find(cliente => cliente.nome === nome);
+            function gerarId() {
+                return 'id-' + Math.random().toString(36).substr(2, 9);
+            }
 
-                if (clienteExistente) {
-                    form.endereco.value = clienteExistente.endereco;
-                    form.telefone.value = clienteExistente.telefone;
-                    form.instagram.value = clienteExistente.instagram;
-                    form.nasc.value = clienteExistente.nasc;
-                    form.aspecto.value = clienteExistente.aspecto;
-                    form.cor_nat_raiz.value = clienteExistente.cor_nat_raiz;
-                    form.tem_quimica.value = clienteExistente.tem_quimica;
-                    form.faz_tratamentos.value = clienteExistente.faz_tratamentos;
-                    form.frequencia.value = clienteExistente.frequencia;
-                    form.comprimento.value = clienteExistente.comprimento;
-                    form.espessura.value = clienteExistente.espessura;
-                    form.densidade.value = clienteExistente.densidade;
-                    form.lava_frequencia.value = clienteExistente.lava_frequencia;
-                    form.obs.value = clienteExistente.obs;
-                    form.procedimentos.value = clienteExistente.procedimentos;
+            document.getElementById('nome').addEventListener('blur', function() {
+                const nome = this.value.trim();
+                if (clientes[nome]) {
+                    document.getElementById('endereco').value = clientes[nome].endereco;
+                    document.getElementById('telefone').value = clientes[nome].telefone;
+                    document.getElementById('instagram').value = clientes[nome].instagram;
+                    document.getElementById('nasc').value = clientes[nome].nascimento;
+                    document.getElementById('nome').dataset.id = clientes[nome].id;
+                } else {
+                    document.getElementById('endereco').value = '';
+                    document.getElementById('telefone').value = '';
+                    document.getElementById('instagram').value = '';
+                    document.getElementById('nasc').value = '';
+                    document.getElementById('nome').dataset.id = gerarId();
                 }
             });
 
-            form.addEventListener('submit', function(event) {
+            document.getElementById('clienteForm').addEventListener('submit', function(event) {
                 event.preventDefault();
+                const nome = document.getElementById('nome').value.trim();
+                const endereco = document.getElementById('endereco').value.trim();
+                const telefone = document.getElementById('telefone').value.trim();
+                const instagram = document.getElementById('instagram').value.trim();
+                const nascimento = document.getElementById('nasc').value.trim();
+                const id = document.getElementById('nome').dataset.id;
 
-                const cliente = {
-                    id: Date.now().toString(36) + Math.random().toString(36).substring(2),
-                    nome: form.nome.value,
-                    endereco: form.endereco.value,
-                    telefone: form.telefone.value,
-                    instagram: form.instagram.value,
-                    nasc: form.nasc.value,
-                    aspecto: form.aspecto.value,
-                    cor_nat_raiz: form.cor_nat_raiz.value,
-                    tem_quimica: form.tem_quimica.value,
-                    faz_tratamentos: form.faz_tratamentos.value,
-                    frequencia: form.frequencia.value,
-                    comprimento: form.comprimento.value,
-                    espessura: form.espessura.value,
-                    densidade: form.densidade.value,
-                    lava_frequencia: form.lava_frequencia.value,
-                    obs: form.obs.value,
-                    procedimentos: form.procedimentos.value
-                };
-
-                let clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
-                const index = clientes.findIndex(c => c.nome === cliente.nome);
-
-                if (index !== -1) {
-                    clientes[index] = cliente;
-                } else {
-                    clientes.push(cliente);
-                }
-
-                localStorage.setItem('clientes', JSON.stringify(clientes));
-                alert('Dados do cliente salvos com sucesso!');
-                form.reset();
+                clientes[nome] = { id, endereco, telefone, instagram, nascimento };
+                
+                alert('Cliente salvo com ID: ' + id);
+                this.reset();
             });
         });
     </script>
+    <!-- Scripts do JavaScript do Bootstrap e do Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Plugin para máscaras de input -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </body>
 </html>
