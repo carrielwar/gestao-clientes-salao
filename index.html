@@ -172,54 +172,45 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const clientes = {};
+            // Máscara para CPF e Telefone
+            $('#cpf').mask('000.000.000-00');
+            $('#telefone').mask('(00) 00000-0000');
 
-            document.getElementById('cpf').addEventListener('blur', function() {
-                const cpf = this.value.trim();
-                if (clientes[cpf]) {
-                    document.getElementById('nome').value = clientes[cpf].nome;
-                    document.getElementById('endereco').value = clientes[cpf].endereco;
-                    document.getElementById('telefone').value = clientes[cpf].telefone;
-                    document.getElementById('instagram').value = clientes[cpf].instagram;
-                    document.getElementById('nasc').value = clientes[cpf].nascimento;
-                    document.getElementById('cpf').dataset.id = cpf;
-                } else {
-                    document.getElementById('nome').value = '';
-                    document.getElementById('endereco').value = '';
-                    document.getElementById('telefone').value = '';
-                    document.getElementById('instagram').value = '';
-                    document.getElementById('nasc').value = '';
-                    document.getElementById('cpf').dataset.id = cpf;
-                }
-            });
-
-            document.getElementById('clienteForm').addEventListener('submit', function(event) {
+            // Lidar com o envio do formulário
+            document.getElementById('clienteForm').addEventListener('submit', async function(event) {
                 event.preventDefault();
-                const cpf = document.getElementById('cpf').value.trim();
-                const nome = document.getElementById('nome').value.trim();
-                const endereco = document.getElementById('endereco').value.trim();
-                const telefone = document.getElementById('telefone').value.trim();
-                const instagram = document.getElementById('instagram').value.trim();
-                const nascimento = document.getElementById('nasc').value.trim();
 
-                clientes[cpf] = { cpf, nome, endereco, telefone, instagram, nascimento };
-                
-                alert('Cliente salvo com CPF: ' + cpf);
-                this.reset();
+                const form = this;
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch('http://localhost:3000/clientes', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Erro ao salvar cliente');
+                    }
+
+                    const data = await response.json();
+                    console.log('Cliente salvo com sucesso:', data);
+                    alert('Cliente salvo com sucesso!');
+
+                    // Limpar o formulário após o envio bem-sucedido
+                    form.reset();
+                } catch (error) {
+                    console.error('Erro ao salvar cliente:', error);
+                    alert('Erro ao salvar cliente. Verifique o console para mais detalhes.');
+                }
             });
         });
     </script>
-    <!-- Scripts do JavaScript do Bootstrap e do Popper.js -->
+    <!-- Scripts do Bootstrap e Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Plugin para máscaras de input -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#cpf').mask('000.000.000-00');
-            $('#telefone').mask('(00) 00000-0000');
-        });
-    </script>
 </body>
 </html>
