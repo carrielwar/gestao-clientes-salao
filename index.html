@@ -7,6 +7,19 @@
 </head>
 <body>
     <h1>Ficha de Atendimento do Cliente</h1>
+    <form id="clienteForm">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br><br>
+        
+        <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Controle de Clientes</title>
+</head>
+<body>
+    <h1>Ficha de Atendimento do Cliente</h1>
     <form>
         <label for="nome">Nome:</label><br>
         <input type="text" id="nome" name="nome"><br><br>
@@ -82,5 +95,40 @@
 
         <input type="submit" value="Salvar">
     </form>
+</body>
+</html>
+        
+        <input type="submit" value="Salvar">
+    </form>
+
+    <script>
+        document.getElementById('clienteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
+            const formData = new FormData(this);
+            const jsonObject = {};
+
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Dados salvos com sucesso');
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao salvar os dados');
+            });
+        });
+    </script>
 </body>
 </html>
