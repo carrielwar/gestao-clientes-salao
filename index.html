@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #333;
+            color: #fff;
+            font-family: 'Times New Roman', Times, serif;
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
-            background: #ffffff;
+            background: #444;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
         .form-group label {
             font-weight: bold;
@@ -23,7 +25,26 @@
         h1 {
             text-align: center;
             margin-bottom: 30px;
-            color: #343a40;
+            color: #fff;
+        }
+        .form-control, .form-check-label {
+            background: #555;
+            color: #fff;
+            border: 1px solid #777;
+        }
+        .form-control::placeholder {
+            color: #bbb;
+        }
+        .form-check-input {
+            background: #555;
+            border: 1px solid #777;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -33,19 +54,19 @@
         <form id="clienteForm">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome">
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço:</label>
-                <input type="text" class="form-control" id="endereco" name="endereco">
+                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereço">
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" name="telefone">
+                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone">
             </div>
             <div class="form-group">
                 <label for="instagram">Instagram:</label>
-                <input type="text" class="form-control" id="instagram" name="instagram">
+                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Digite o Instagram">
             </div>
             <div class="form-group">
                 <label for="nasc">Nascimento:</label>
@@ -60,7 +81,7 @@
             </div>
             <div class="form-group">
                 <label for="cor_nat_raiz">Cor Natural da Raiz:</label>
-                <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz">
+                <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz" placeholder="Digite a cor natural da raiz">
             </div>
             <div class="form-group">
                 <label>Tem química?</label><br>
@@ -86,7 +107,7 @@
             </div>
             <div class="form-group">
                 <label for="frequencia">Qual frequência?</label>
-                <input type="text" class="form-control" id="frequencia" name="frequencia">
+                <input type="text" class="form-control" id="frequencia" name="frequencia" placeholder="Digite a frequência">
             </div>
             <div class="form-group">
                 <label>Comprimento:</label><br>
@@ -139,16 +160,15 @@
             </div>
             <div class="form-group">
                 <label>Lava o cabelo com qual frequência?</label>
-                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia">
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência">
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
-                <textarea class="form-control" id="obs" name="obs" rows="3"></textarea>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite as observações"></textarea>
             </div>
             <div class="form-group">
-                <label for="procedimentos">Procedimentos Realizados:</label>
-                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="6"></textarea>
-            </div>
+                <label for="procedimentos">Procedimentos Realizados:</
+</div>
             <button type="submit" class="btn btn-primary btn-block">Salvar</button>
         </form>
     </div>
@@ -173,37 +193,8 @@
             })
             .then(response => response.text())
             .then(data => {
-                alert(data);
-                this.reset();
-            })
-            .catch(error => console.error('Erro:', error));
-        });
-    </script>
-</body>
-</html>
-
-    <script>
-        document.getElementById('clienteForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const url = 'http://localhost:3000/clientes';  // URL do seu servidor Node.js
-            const formData = new FormData(this);
-            const jsonObject = {};
-
-            formData.forEach((value, key) => {
-                jsonObject[key] = value;
-            });
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonObject)
-            })
-            .then(response => response.text())
-            .then(data => {
                 alert('Dados salvos com sucesso');
+                this.reset();
             })
             .catch(error => {
                 console.error('Erro:', error);
@@ -211,9 +202,9 @@
             });
         });
     </script>
-<!-- Scripts do JavaScript do Bootstrap e do Popper.js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Scripts do JavaScript do Bootstrap e do Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
