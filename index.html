@@ -45,6 +45,9 @@
             margin-top: 0.3rem;
             margin-left: -1.25rem;
         }
+        #clientesList {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -161,20 +164,57 @@
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
-                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite observações adicionais"></textarea>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite suas observações"></textarea>
             </div>
             <div class="form-group">
                 <label for="procedimentos">Procedimentos realizados:</label>
-                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Descreva os procedimentos realizados"></textarea>
+                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Digite os procedimentos realizados"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
-            <button type="button" class="btn btn-secondary ml-2" id="btnCarregarClientes">Carregar Clientes</button>
+            <button type="button" id="carregarClientes" class="btn btn-secondary">Carregar Clientes</button>
         </form>
+        <div id="clientesList">
+            <!-- A tabela de clientes será gerada dinamicamente aqui -->
+        </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        document.getElementById('btnCarregarClientes').addEventListener('click', function() {
-            window.open('/clientes', '_blank');
+        $(document).ready(function() {
+            $('#carregarClientes').click(function() {
+                $.get('/clientes', function(data) {
+                    let clientesList = $('#clientesList');
+                    clientesList.empty();
+                    if (data.length === 0) {
+                        clientesList.append('<p>Nenhum cliente encontrado.</p>');
+                    } else {
+                        let table = $('<table class="table table-bordered"><thead><tr><th>CPF</th><th>Nome</th><th>Endereço</th><th>Telefone</th><th>Instagram</th><th>Nascimento</th><th>Aspecto</th><th>Cor Natural da Raiz</th><th>Tem Química?</th><th>Faz Hidratação?</th><th>Frequência</th><th>Comprimento</th><th>Espessura</th><th>Densidade</th><th>Frequência de Lavagem</th><th>Observações</th><th>Procedimentos</th></tr></thead><tbody></tbody></table>');
+                        data.forEach(function(cliente) {
+                            table.append('<tr><td>' + cliente.cpf + '</td><td>' + cliente.nome + '</td><td>' + cliente.endereco + '</td><td>' + cliente.telefone + '</td><td>' + cliente.instagram + '</td><td>' + cliente.nasc + '</td><td>' + cliente.aspecto + '</td><td>' + cliente.cor_nat_raiz + '</td><td>' + cliente.tem_quimica + '</td><td>' + cliente.faz_tratamentos + '</td><td>' + cliente.frequencia + '</td><td>' + cliente.comprimento + '</td><td>' + cliente.espessura + '</td><td>' + cliente.densidade + '</td><td>' + cliente.lava_frequencia + '</td><td>' + cliente.obs + '</td><td>' + cliente.procedimentos + '</td></tr>');
+                        });
+                        clientesList.append(table);
+
+                        // Abrir os dados dos clientes em uma nova aba
+                        let newWindow = window.open();
+                        newWindow.document.write('<html><head><title>Dados dos Clientes</title></head><body>');
+                        newWindow.document.write('<h1>Dados dos Clientes</h1>');
+                        newWindow.document.write(table.prop('outerHTML'));
+                        newWindow.document.write('</body></html>');
+                        newWindow.document.close();
+                    }
+                });
+            });
+
+            $('#clienteForm').submit(function(event) {
+                event.preventDefault();
+                let formData = $(this).serialize();
+                $.post('/clientes', formData, function(response) {
+                    alert('Cliente adicionado com sucesso!');
+                    $('#clienteForm')[0].reset();
+                }).fail(function() {
+                    alert('Erro ao adicionar cliente. Por favor, tente novamente.');
+                });
+            });
         });
     </script>
 </body>
