@@ -171,7 +171,29 @@
         </form>
     </div>
 
+<script>
+    document.getElementById('clienteForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
 
+        fetch('/adicionar-cliente', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+        })
+        .catch((error) => {
+            console.error('Erro:', error);
+        });
+    });
+</script>
     <!-- Scripts do Bootstrap e Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
