@@ -178,7 +178,7 @@
         const data = {};
         formData.forEach((value, key) => (data[key] = value));
 
-        fetch('/adicionar-cliente', {
+        fetch('http://localhost:3000/adicionar-cliente', { // Envia os dados para o localhost
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
