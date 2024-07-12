@@ -164,16 +164,19 @@
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
-                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite as observações"></textarea>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite suas observações"></textarea>
             </div>
             <div class="form-group">
-                <label for="procedimentos">Procedimentos:</label>
-                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Digite os procedimentos"></textarea>
+                <label for="procedimentos">Procedimentos realizados:</label>
+                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Digite os procedimentos realizados"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
+            <button type="button" id="carregarClientes" class="btn btn-secondary">Carregar Clientes</button> 
+
         </form>
         
-        <div id="clientesList" style="display: none;"></div>
+        </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -191,25 +194,15 @@
                         data.forEach(function(cliente) {
                             table.append('<tr><td>' + cliente.cpf + '</td><td>' + cliente.nome + '</td><td>' + cliente.endereco + '</td><td>' + cliente.telefone + '</td><td>' + cliente.instagram + '</td><td>' + cliente.nasc + '</td><td>' + cliente.aspecto + '</td><td>' + cliente.cor_nat_raiz + '</td><td>' + cliente.tem_quimica + '</td><td>' + cliente.faz_tratamentos + '</td><td>' + cliente.frequencia + '</td><td>' + cliente.comprimento + '</td><td>' + cliente.espessura + '</td><td>' + cliente.densidade + '</td><td>' + cliente.lava_frequencia + '</td><td>' + cliente.obs + '</td><td>' + cliente.procedimentos + '</td></tr>');
                         });
-                        clientesList.html(table);
+                        clientesList.append(table);
 
-                        // Mostra a lista de clientes após carregar
-                        clientesList.show();
-
-                        // Adiciona o botão Exportar Dados
-                        $('#clientesList').append('<button type="button" id="exportarDados" class="btn btn-success mt-3">Exportar Dados</button>');
-
-                        // Função para exportar os dados ao clicar em Exportar Dados
-                        $('#exportarDados').click(function() {
-                            let exportTable = table.clone();
-                            let newWindow = window.open();
-                            newWindow.document.write('<html><head><title>Dados dos Clientes</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></head><body>');
-                            newWindow.document.write('<div class="container">');
-                            newWindow.document.write('<h1 class="mt-4">Dados dos Clientes</h1>');
-                            newWindow.document.write(exportTable.prop('outerHTML'));
-                            newWindow.document.write('</div></body></html>');
-                            newWindow.document.close();
-                        });
+                        // Abrir os dados dos clientes em uma nova aba
+                        let newWindow = window.open();
+                        newWindow.document.write('<html><head><title>Dados dos Clientes</title></head><body>');
+                        newWindow.document.write('<h1>Dados dos Clientes</h1>');
+                        newWindow.document.write(table.prop('outerHTML'));
+                        newWindow.document.write('</body></html>');
+                        newWindow.document.close();
                     }
                 });
             });
@@ -226,5 +219,27 @@
             });
         });
     </script>
+<script>
+    $(document).ready(function() {
+        $('#exportarDados').click(function() {
+            // Aqui você pode colocar o código para exportar os dados
+            let table = $('#clientesList table').clone(); // Clona a tabela já gerada
+
+            // Abre os dados dos clientes em uma nova aba
+            let newWindow = window.open();
+     	    newWindow.document.write('<html><head><title>Dados dos Clientes</title>');
+	    newWindow.document.write('<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+            newWindow.document.write('</head><body>');
+            newWindow.document.write('<div class="container">');
+            newWindow.document.write('<h1 class="mt-4">Dados dos Clientes</h1>');
+            newWindow.document.write(table.prop('outerHTML'));
+            newWindow.document.write('</div>');
+            newWindow.document.write('</body></html>');
+            newWindow.document.close();
+        });
+
+    });
+</script>
+
 </body>
 </html>
