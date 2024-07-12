@@ -173,8 +173,7 @@
             <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
             <button type="button" id="carregarClientes" class="btn btn-secondary">Carregar Clientes</button>
         </form>
-        <div id="clientesList">
-            <!-- A tabela de clientes será gerada dinamicamente aqui -->
+        
         </div>
     </div>
 
@@ -188,7 +187,7 @@
                     if (data.length === 0) {
                         clientesList.append('<p>Nenhum cliente encontrado.</p>');
                     } else {
-                        let table = $('<table class="table table-bordered"><thead><tr><th>CPF</th><th>Nome</th><th>Endereço</th><th>Telefone</th><th>Instagram</th><th>Nascimento</th><th>Aspecto</th><th>Cor Natural da Raiz</th><th>Tem Química?</th><th>Faz Hidratação?</th><th>Frequência</th><th>Comprimento</th><th>Espessura</th><th>Densidade</th><th>Frequência de Lavagem</th><th>Observações</th><th>Procedimentos</th></tr></thead><tbody></tbody></table>');
+                        let table = $('<table class="table table-striped table-bordered table-hover"><thead><tr><th>CPF</th><th>Nome</th><th>Endereço</th><th>Telefone</th><th>Instagram</th><th>Nascimento</th><th>Aspecto</th><th>Cor Natural da Raiz</th><th>Tem Química?</th><th>Faz Hidratação?</th><th>Frequência</th><th>Comprimento</th><th>Espessura</th><th>Densidade</th><th>Frequência de Lavagem</th><th>Observações</th><th>Procedimentos</th></tr></thead><tbody></tbody></table>');
                         data.forEach(function(cliente) {
                             table.append('<tr><td>' + cliente.cpf + '</td><td>' + cliente.nome + '</td><td>' + cliente.endereco + '</td><td>' + cliente.telefone + '</td><td>' + cliente.instagram + '</td><td>' + cliente.nasc + '</td><td>' + cliente.aspecto + '</td><td>' + cliente.cor_nat_raiz + '</td><td>' + cliente.tem_quimica + '</td><td>' + cliente.faz_tratamentos + '</td><td>' + cliente.frequencia + '</td><td>' + cliente.comprimento + '</td><td>' + cliente.espessura + '</td><td>' + cliente.densidade + '</td><td>' + cliente.lava_frequencia + '</td><td>' + cliente.obs + '</td><td>' + cliente.procedimentos + '</td></tr>');
                         });
@@ -225,9 +224,13 @@
 
             // Abre os dados dos clientes em uma nova aba
             let newWindow = window.open();
-            newWindow.document.write('<html><head><title>Dados dos Clientes</title></head><body>');
-            newWindow.document.write('<h1>Dados dos Clientes</h1>');
+     	    newWindow.document.write('<html><head><title>Dados dos Clientes</title>');
+	    newWindow.document.write('<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+            newWindow.document.write('</head><body>');
+            newWindow.document.write('<div class="container">');
+            newWindow.document.write('<h1 class="mt-4">Dados dos Clientes</h1>');
             newWindow.document.write(table.prop('outerHTML'));
+            newWindow.document.write('</div>');
             newWindow.document.write('</body></html>');
             newWindow.document.close();
         });
