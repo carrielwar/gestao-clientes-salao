@@ -54,80 +54,158 @@
     <div class="container">
         <h1>Ficha de Atendimento do Cliente</h1>
         <form id="clienteForm">
-            <!-- (seu código do formulário permanece o mesmo) -->
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF" required>
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome" required>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereço (incluindo CEP)" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone" required>
+            </div>
+            <div class="form-group">
+                <label for="instagram">Instagram:</label>
+                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Digite o Instagram" required>
+            </div>
+            <div class="form-group">
+                <label for="nasc">Nascimento:</label>
+                <input type="date" class="form-control" id="nasc" name="nasc" required>
+            </div>
+            <div class="form-group">
+                <label for="aspecto">Aspecto:</label>
+                <select class="form-control" id="aspecto" name="aspecto" required>
+                    <option value="misto">Misto</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cor_nat_raiz">Cor Natural da Raiz:</label>
+                <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz" placeholder="Digite a cor natural da raiz" required>
+            </div>
+            <div class="form-group">
+                <label for="tem_quimica">Tem química?</label>
+                <select class="form-control" id="tem_quimica" name="tem_quimica" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="faz_tratamentos">Faz hidratação?</label>
+                <select class="form-control" id="faz_tratamentos" name="faz_tratamentos" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="frequencia">Qual frequência?</label>
+                <input type="text" class="form-control" id="frequencia" name="frequencia" placeholder="Digite a frequência" required>
+            </div>
+            <div class="form-group">
+                <label>Comprimento:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_curto" name="comprimento" value="curto" required>
+                    <label class="form-check-label" for="comprimento_curto">Curto</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_medio" name="comprimento" value="medio" required>
+                    <label class="form-check-label" for="comprimento_medio">Médio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_longo" name="comprimento" value="longo" required>
+                    <label class="form-check-label" for="comprimento_longo">Longo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="comprimento_ext_longo" name="comprimento" value="ext_longo" required>
+                    <label class="form-check-label" for="comprimento_ext_longo">Ext. Longo</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Espessura:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_fino" name="espessura" value="fino" required>
+                    <label class="form-check-label" for="espessura_fino">Fino</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_medio" name="espessura" value="medio" required>
+                    <label class="form-check-label" for="espessura_medio">Médio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="espessura_grosso" name="espessura" value="grosso" required>
+                    <label class="form-check-label" for="espessura_grosso">Grosso</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Densidade:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_baixa" name="densidade" value="baixa" required>
+                    <label class="form-check-label" for="densidade_baixa">Baixa</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_media" name="densidade" value="media" required>
+                    <label class="form-check-label" for="densidade_media">Média</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="densidade_alta" name="densidade" value="alta" required>
+                    <label class="form-check-label" for="densidade_alta">Alta</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência" required>
+            </div>
+            <div class="form-group">
+                <label for="obs">Observações:</label>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite suas observações"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="procedimentos">Procedimentos Realizados:</label>
+                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Digite os procedimentos realizados"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
         </form>
-        <button id="carregarClientes" class="btn btn-secondary btn-block">Carregar Clientes</button>
-        <div id="clientesList" class="mt-4"></div>
+
+        <h1>Clientes Adicionados</h1>
+        <button id="carregarClientes" class="btn btn-secondary">Carregar Clientes</button>
+        <div id="clientesList"></div>
     </div>
 
-<script>
-    document.getElementById('clienteForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        const data = {};
-        formData.forEach((value, key) => (data[key] = value));
-
-        fetch('http://localhost:3000/adicionar-cliente', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.text())
-        .then(data => {
-            alert(data);
-        })
-        .catch((error) => {
-            console.error('Erro:', error);
-        });
-    });
-
-    document.getElementById('carregarClientes').addEventListener('click', function() {
-        fetch('http://localhost:3000/clientes')
-        .then(response => response.json())
-        .then(data => {
-            const clientesList = document.getElementById('clientesList');
-            clientesList.innerHTML = ''; // Limpa a lista antes de carregar os clientes
-            if (data.length === 0) {
-                clientesList.innerHTML = '<p>Nenhum cliente cadastrado.</p>';
-            } else {
-                data.forEach(cliente => {
-                    const clienteDiv = document.createElement('div');
-                    clienteDiv.classList.add('card', 'mb-3');
-                    clienteDiv.innerHTML = `
-                        <div class="card-body">
-                            <h5 class="card-title">${cliente.nome}</h5>
-                            <p class="card-text"><strong>CPF:</strong> ${cliente.cpf}</p>
-                            <p class="card-text"><strong>Endereço:</strong> ${cliente.endereco}</p>
-                            <p class="card-text"><strong>Telefone:</strong> ${cliente.telefone}</p>
-                            <p class="card-text"><strong>Instagram:</strong> ${cliente.instagram}</p>
-                            <p class="card-text"><strong>Nascimento:</strong> ${cliente.nasc}</p>
-                            <p class="card-text"><strong>Aspecto:</strong> ${cliente.aspecto}</p>
-                            <p class="card-text"><strong>Cor Natural da Raiz:</strong> ${cliente.cor_nat_raiz}</p>
-                            <p class="card-text"><strong>Tem química:</strong> ${cliente.tem_quimica}</p>
-                            <p class="card-text"><strong>Faz hidratação:</strong> ${cliente.faz_tratamentos}</p>
-                            <p class="card-text"><strong>Frequência:</strong> ${cliente.frequencia}</p>
-                            <p class="card-text"><strong>Comprimento:</strong> ${cliente.comprimento}</p>
-                            <p class="card-text"><strong>Espessura:</strong> ${cliente.espessura}</p>
-                            <p class="card-text"><strong>Densidade:</strong> ${cliente.densidade}</p>
-                            <p class="card-text"><strong>Lava com frequência:</strong> ${cliente.lava_frequencia}</p>
-                            <p class="card-text"><strong>Observações:</strong> ${cliente.obs}</p>
-                            <p class="card-text"><strong>Procedimentos:</strong> ${cliente.procedimentos}</p>
-                        </div>
-                    `;
-                    clientesList.appendChild(clienteDiv);
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#carregarClientes').click(function() {
+                $.get('/clientes', function(data) {
+                    let clientesList = $('#clientesList');
+                    clientesList.empty();
+                    if (data.length === 0) {
+                        clientesList.append('<p>Nenhum cliente encontrado.</p>');
+                    } else {
+                        let table = $('<table class="table table-bordered"><thead><tr><th>CPF</th><th>Nome</th><th>Endereço</th><th>Telefone</th><th>Instagram</th><th>Nascimento</th><th>Aspecto</th><th>Cor Natural da Raiz</th><th>Tem Química?</th><th>Faz Hidratação?</th><th>Frequência</th><th>Comprimento</th><th>Espessura</th><th>Densidade</th><th>Frequência de Lavagem</th><th>Observações</th><th>Procedimentos</th></tr></thead><tbody></tbody></table>');
+                        data.forEach(function(cliente) {
+                            table.append('<tr><td>' + cliente.cpf + '</td><td>' + cliente.nome + '</td><td>' + cliente.endereco + '</td><td>' + cliente.telefone + '</td><td>' + cliente.instagram + '</td><td>' + cliente.nasc + '</td><td>' + cliente.aspecto + '</td><td>' + cliente.cor_nat_raiz + '</td><td>' + cliente.tem_quimica + '</td><td>' + cliente.faz_tratamentos + '</td><td>' + cliente.frequencia + '</td><td>' + cliente.comprimento + '</td><td>' + cliente.espessura + '</td><td>' + cliente.densidade + '</td><td>' + cliente.lava_frequencia + '</td><td>' + cliente.obs + '</td><td>' + cliente.procedimentos + '</td></tr>');
+                        });
+                        clientesList.append(table);
+                    }
                 });
-            }
-        })
-        .catch((error) => {
-            console.error('Erro:', error);
+            });
+
+            $('#clienteForm').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.post('/adicionar-cliente', formData, function(response) {
+                    alert('Cliente adicionado com sucesso!');
+                    $('#clienteForm')[0].reset();
+                });
+            });
         });
-    });
-</script>
-    <!-- Scripts do Bootstrap e Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </script>
 </body>
 </html>
