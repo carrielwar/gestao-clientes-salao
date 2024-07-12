@@ -217,5 +217,22 @@
             });
         });
     </script>
+<script>
+    $(document).ready(function() {
+        $('#exportarDados').click(function() {
+            // Aqui você pode colocar o código para exportar os dados
+            let table = $('#clientesList table').clone(); // Clona a tabela já gerada
+
+            // Abre os dados dos clientes em uma nova aba
+            let newWindow = window.open();
+            newWindow.document.write('<html><head><title>Dados dos Clientes</title></head><body>');
+            newWindow.document.write('<h1>Dados dos Clientes</h1>');
+            newWindow.document.write(table.prop('outerHTML'));
+            newWindow.document.write('</body></html>');
+            newWindow.document.close();
+        });
+    });
+</script>
+
 </body>
 </html>
