@@ -167,138 +167,106 @@
             </div>
             <div class="form-group">
                 <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
-                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência que lava o cabelo" required>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência" required>
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
                 <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Observações adicionais"></textarea>
             </div>
             <div class="form-group">
-                <label for="procedimentos">Procedimentos Realizados:</label>
-                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Procedimentos realizados"></textarea>
+                <label for="procedimentos">Procedimentos realizados:</label>
+                <input type="text" class="form-control" id="procedimentos" name="procedimentos" placeholder="Procedimentos realizados" required>
             </div>
             <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
         </form>
+
         <div id="clientesList"></div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
     <script>
-        // Configuração do Firebase
+        // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID",
-            measurementId: "YOUR_MEASUREMENT_ID" // Opcional, se usar analytics
+            apiKey: "AIzaSyBl7qCDIQVhD2yy0zy-GWOzaydKs_GW0PY",
+            authDomain: "studiojhgestaocli.firebaseapp.com",
+            projectId: "studiojhgestaocli",
+            storageBucket: "studiojhgestaocli.appspot.com",
+            messagingSenderId: "348621971180",
+            appId: "1:348621971180:web:640d787ef000d4f9d18fc9",
+            measurementId: "G-RH7CW5PQGN"
         };
 
-        // Inicialização do Firebase
+        // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+        const db = firebase.firestore(app);
 
-        // Máscaras para campos
-        $(document).ready(function() {
-            $('#cpf').mask('000.000.000-00');
-            $('#telefone').mask('(00) 00000-0000');
+        // Evento de envio do formulário
+        $('#clienteForm').submit(function(event) {
+            event.preventDefault();
 
-            $('#faz_tratamentos').change(function() {
-                if ($(this).val() === 'sim') {
-                    $('#frequencia-group').removeClass('hidden');
-                } else {
-                    $('#frequencia-group').addClass('hidden');
-                }
-            });
+            // Coleta os dados do formulário
+            const cliente = {
+                cpf: $('#cpf').val(),
+                nome: $('#nome').val(),
+                endereco: $('#endereco').val(),
+                telefone: $('#telefone').val(),
+                instagram: $('#instagram').val(),
+                nasc: $('#nasc').val(),
+                aspecto: $('#aspecto').val(),
+                cor_nat_raiz: $('#cor_nat_raiz').val(),
+                tem_quimica: $('#tem_quimica').val(),
+                faz_tratamentos: $('#faz_tratamentos').val(),
+                frequencia: $('#frequencia').val(),
+                comprimento: $('input[name="comprimento"]:checked').val(),
+                espessura: $('input[name="espessura"]:checked').val(),
+                densidade: $('input[name="densidade"]:checked').val(),
+                lava_frequencia: $('#lava_frequencia').val(),
+                obs: $('#obs').val(),
+                procedimentos: $('#procedimentos').val()
+            };
 
-            // Função para adicionar cliente ao Firestore
-            function adicionarClienteFirestore(cliente) {
-                return db.collection('clientes').add(cliente);
-            }
-
-            // Função para adicionar cliente ao HTML localmente
-            function adicionarCliente(cliente) {
-                const clienteHTML = `
-                    <div class="cliente">
-                        <p><strong>Nome:</strong> ${cliente.nome}</p>
-                        <p><strong>CPF:</strong> ${cliente.cpf}</p>
-                        <p><strong>Endereço:</strong> ${cliente.endereco}</p>
-                        <p><strong>Telefone:</strong> ${cliente.telefone}</p>
-                        <p><strong>Instagram:</strong> ${cliente.instagram}</p>
-                        <p><strong>Nascimento:</strong> ${cliente.nasc}</p>
-                        <p><strong>Aspecto:</strong> ${cliente.aspecto}</p>
-                        <p><strong>Cor Natural da Raiz:</strong> ${cliente.cor_nat_raiz}</p>
-                        <p><strong>Tem química?</strong> ${cliente.tem_quimica}</p>
-                        <p><strong>Faz hidratação?</strong> ${cliente.faz_tratamentos}</p>
-                        ${cliente.faz_tratamentos === 'sim' ? `<p><strong>Com qual frequência?</strong> ${cliente.frequencia}</p>` : ''}
-                        <p><strong>Comprimento:</strong> ${cliente.comprimento}</p>
-                        <p><strong>Espessura:</strong> ${cliente.espessura}</p>
-                        <p><strong>Densidade:</strong> ${cliente.densidade}</p>
-                        <p><strong>Lava o cabelo com qual frequência?</strong> ${cliente.lava_frequencia}</p>
-                        <p><strong>Observações:</strong> ${cliente.obs}</p>
-                        <p><strong>Procedimentos Realizados:</strong> ${cliente.procedimentos}</p>
-                    </div><hr>
-                `;
-                $('#clientesList').append(clienteHTML);
-            }
-
-            // Evento de envio do formulário
-            $('#clienteForm').submit(function(event) {
-                event.preventDefault();
-                const cliente = {
-                    cpf: $('#cpf').val(),
-                    nome: $('#nome').val(),
-                    endereco: $('#endereco').val(),
-                    telefone: $('#telefone').val(),
-                    instagram: $('#instagram').val(),
-                    nasc: $('#nasc').val(),
-                    aspecto: $('#aspecto').val(),
-                    cor_nat_raiz: $('#cor_nat_raiz').val(),
-                    tem_quimica: $('#tem_quimica').val(),
-                    faz_tratamentos: $('#faz_tratamentos').val(),
-                    frequencia: $('#frequencia').val(),
-                    comprimento: $('input[name="comprimento"]:checked').val(),
-                    espessura: $('input[name="espessura"]:checked').val(),
-                    densidade: $('input[name="densidade"]:checked').val(),
-                    lava_frequencia: $('#lava_frequencia').val(),
-                    obs: $('#obs').val(),
-                    procedimentos: $('#procedimentos').val()
-                };
-
-                // Adicionar cliente ao Firestore
-                adicionarClienteFirestore(cliente)
-                    .then(docRef => {
-                        cliente.id = docRef.id; // Adiciona o ID do documento Firestore ao cliente localmente
-                        adicionarCliente(cliente); // Adiciona cliente ao HTML localmente
-                        this.reset();
-                        $('#frequencia-group').addClass('hidden');
-                    })
-                    .catch(error => {
-                        console.error("Erro ao adicionar cliente: ", error);
-                    });
-            });
-
-            // Carregar clientes do Firestore ao inicializar
-            function carregarClientes() {
-                db.collection('clientes').get()
-                    .then(snapshot => {
-                        snapshot.forEach(doc => {
-                            const cliente = doc.data();
-                            cliente.id = doc.id;
-                            adicionarCliente(cliente); // Adiciona cliente ao HTML
-                        });
-                    })
-                    .catch(error => {
-                        console.error("Erro ao carregar clientes: ", error);
-                    });
-            }
-
-            carregarClientes(); // Carregar clientes ao iniciar a página
+            // Adiciona o cliente ao Firestore
+            db.collection('clientes').add(cliente)
+                .then(docRef => {
+                    console.log("Cliente adicionado com ID: ", docRef.id);
+                    cliente.id = docRef.id; // Adiciona o ID do documento Firestore ao cliente localmente
+                    adicionarCliente(cliente); // Adiciona cliente ao HTML localmente
+                    this.reset(); // Limpa o formulário após o envio
+                    $('#frequencia-group').addClass('hidden'); // Esconde o grupo de frequência, se aplicável
+                })
+                .catch(error => {
+                    console.error("Erro ao adicionar cliente: ", error);
+                });
         });
+
+        // Função para adicionar cliente ao HTML localmente
+        function adicionarCliente(cliente) {
+            const clienteHTML = `
+                <div class="cliente">
+                    <p><strong>CPF:</strong> ${cliente.cpf}</p>
+                    <p><strong>Nome:</strong> ${cliente.nome}</p>
+                    <p><strong>Endereço:</strong> ${cliente.endereco}</p>
+                    <p><strong>Telefone:</strong> ${cliente.telefone}</p>
+                    <p><strong>Instagram:</strong> ${cliente.instagram}</p>
+                    <p><strong>Nascimento:</strong> ${cliente.nasc}</p>
+                    <p><strong>Aspecto:</strong> ${cliente.aspecto}</p>
+                    <p><strong>Cor Natural da Raiz:</strong> ${cliente.cor_nat_raiz}</p>
+                    <p><strong>Tem química?</strong> ${cliente.tem_quimica}</p>
+                    <p><strong>Faz hidratação?</strong> ${cliente.faz_tratamentos}</p>
+                    ${cliente.faz_tratamentos === 'sim' ? `<p><strong>Com qual frequência?</strong> ${cliente.frequencia}</p>` : ''}
+                    <p><strong>Comprimento:</strong> ${cliente.comprimento}</p>
+                    <p><strong>Espessura:</strong> ${cliente.espessura}</p>
+                    <p><strong>Densidade:</strong> ${cliente.densidade}</p>
+                    <p><strong>Lava o cabelo com qual frequência?</strong> ${cliente.lava_frequencia}</p>
+                    <p><strong>Observações:</strong> ${cliente.obs}</p>
+                    <p><strong>Procedimentos realizados:</strong> ${cliente.procedimentos}</p>
+                </div><hr>
+            `;
+            $('#clientesList').append(clienteHTML);
+        }
     </script>
 </body>
 </html>
