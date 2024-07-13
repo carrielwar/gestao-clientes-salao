@@ -178,7 +178,6 @@
                 <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Digite os procedimentos realizados"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
-            <button type="button" id="carregarClientes" class="btn btn-secondary">Carregar Clientes</button> 
         </form>
         
         <div id="clientesList"></div>
@@ -248,10 +247,6 @@
                 adicionarCliente(cliente);
                 this.reset();
                 $('#frequencia-group').addClass('hidden');
-            });
-
-            $('#carregarClientes').click(function() {
-                // Função para carregar clientes
             });
         });
     </script>
