@@ -198,7 +198,7 @@
             });
 
             function adicionarCliente(cliente) {
-                const clienteHTML = 
+                const clienteHTML = `
                     <div class="cliente">
                         <p><strong>CPF:</strong> ${cliente.cpf}</p>
                         <p><strong>Nome:</strong> ${cliente.nome}</p>
@@ -210,7 +210,7 @@
                         <p><strong>Cor Natural da Raiz:</strong> ${cliente.cor_nat_raiz}</p>
                         <p><strong>Tem química?</strong> ${cliente.tem_quimica}</p>
                         <p><strong>Faz hidratação?</strong> ${cliente.faz_tratamentos}</p>
-                        ${cliente.faz_tratamentos === 'sim' ? <p><strong>Com qual frequência?</strong> ${cliente.frequencia}</p> : ''}
+                        ${cliente.faz_tratamentos === 'sim' ? `<p><strong>Com qual frequência?</strong> ${cliente.frequencia}</p>` : ''}
                         <p><strong>Comprimento:</strong> ${cliente.comprimento}</p>
                         <p><strong>Espessura:</strong> ${cliente.espessura}</p>
                         <p><strong>Densidade:</strong> ${cliente.densidade}</p>
@@ -218,7 +218,7 @@
                         <p><strong>Observações:</strong> ${cliente.obs}</p>
                         <p><strong>Procedimentos realizados:</strong> ${cliente.procedimentos}</p>
                     </div><hr>
-                ;
+                `;
                 $('#clientesList').append(clienteHTML);
             }
 
