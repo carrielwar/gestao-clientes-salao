@@ -51,6 +51,9 @@
         .hidden {
             display: none;
         }
+        textarea {
+            resize: vertical; /* Permite redimensionar verticalmente */
+        }
     </style>
 </head>
 <body>
@@ -167,7 +170,7 @@
             </div>
             <div class="form-group">
                 <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
-                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência que lava o cabelo" required>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência de lavagem do cabelo" required>
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
@@ -175,7 +178,7 @@
             </div>
             <div class="form-group">
                 <label for="procedimentos">Procedimentos realizados:</label>
-                <input type="text" class="form-control" id="procedimentos" name="procedimentos" placeholder="Digite os procedimentos realizados" required>
+                <textarea class="form-control" id="procedimentos" name="procedimentos" rows="3" placeholder="Digite os procedimentos realizados" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
         </form>
