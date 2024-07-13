@@ -48,6 +48,9 @@
         #clientesList {
             margin-top: 20px;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +79,7 @@
             </div>
             <div class="form-group">
                 <label for="nasc">Nascimento:</label>
-                <input type="date" class="form-control" id="nasc" name="nasc" required>
+                <input type="date" class="form-control" id="nasc" name="nasc" inputmode="numeric" required>
             </div>
             <div class="form-group">
                 <label for="aspecto">Aspecto:</label>
@@ -105,9 +108,13 @@
                     <option value="nao">Não</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="frequencia">Qual frequência?</label>
-                <input type="text" class="form-control" id="frequencia" name="frequencia" placeholder="Digite a frequência" required>
+            <div class="form-group hidden" id="frequencia-group">
+                <label for="frequencia">Com qual frequência?</label>
+                <select class="form-control" id="frequencia" name="frequencia">
+                    <option value="semanal">Semanal</option>
+                    <option value="quinzenal">Quinzenal</option>
+                    <option value="mensal">Mensal</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Comprimento:</label><br>
@@ -160,11 +167,11 @@
             </div>
             <div class="form-group">
                 <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
-                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência" required>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Ex: Diário, Semanal" required>
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
-                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite suas observações"></textarea>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite observações relevantes"></textarea>
             </div>
             <div class="form-group">
                 <label for="procedimentos">Procedimentos realizados:</label>
@@ -172,74 +179,81 @@
             </div>
             <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
             <button type="button" id="carregarClientes" class="btn btn-secondary">Carregar Clientes</button> 
-
         </form>
         
-        </div>
-
+        <div id="clientesList"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <script>
         $(document).ready(function() {
-            $('#carregarClientes').click(function() {
-                $.get('/clientes', function(data) {
-                    let clientesList = $('#clientesList');
-                    clientesList.empty();
-                    if (data.length === 0) {
-                        clientesList.append('<p>Nenhum cliente encontrado.</p>');
-                    } else {
-                        let table = $('<table class="table table-striped table-bordered table-hover"><thead><tr><th>CPF</th><th>Nome</th><th>Endereço</th><th>Telefone</th><th>Instagram</th><th>Nascimento</th><th>Aspecto</th><th>Cor Natural da Raiz</th><th>Tem Química?</th><th>Faz Hidratação?</th><th>Frequência</th><th>Comprimento</th><th>Espessura</th><th>Densidade</th><th>Frequência de Lavagem</th><th>Observações</th><th>Procedimentos</th></tr></thead><tbody></tbody></table>');
-                        data.forEach(function(cliente) {
-                            table.append('<tr><td>' + cliente.cpf + '</td><td>' + cliente.nome + '</td><td>' + cliente.endereco + '</td><td>' + cliente.telefone + '</td><td>' + cliente.instagram + '</td><td>' + cliente.nasc + '</td><td>' + cliente.aspecto + '</td><td>' + cliente.cor_nat_raiz + '</td><td>' + cliente.tem_quimica + '</td><td>' + cliente.faz_tratamentos + '</td><td>' + cliente.frequencia + '</td><td>' + cliente.comprimento + '</td><td>' + cliente.espessura + '</td><td>' + cliente.densidade + '</td><td>' + cliente.lava_frequencia + '</td><td>' + cliente.obs + '</td><td>' + cliente.procedimentos + '</td></tr>');
-                        });
-                        clientesList.append(table);
+            $('#cpf').mask('000.000.000-00');
+            $('#telefone').mask('(00) 00000-0000');
 
-                        // Abrir os dados dos clientes em uma nova aba
-                        let newWindow = window.open();
-                        newWindow.document.write('<html><head><title>Dados dos Clientes</title></head><body>');
-                        newWindow.document.write('<h1>Dados dos Clientes</h1>');
-                        newWindow.document.write(table.prop('outerHTML'));
-                        newWindow.document.write('</body></html>');
-                        newWindow.document.close();
-                    }
-                });
+            $('#faz_tratamentos').change(function() {
+                if ($(this).val() === 'sim') {
+                    $('#frequencia-group').removeClass('hidden');
+                } else {
+                    $('#frequencia-group').addClass('hidden');
+                }
             });
+
+            function adicionarCliente(cliente) {
+                $('#clientesList').append(
+                    '<div class="cliente">' +
+                        '<p><strong>CPF:</strong> ' + cliente.cpf + '</p>' +
+                        '<p><strong>Nome:</strong> ' + cliente.nome + '</p>' +
+                        '<p><strong>Endereço:</strong> ' + cliente.endereco + '</p>' +
+                        '<p><strong>Telefone:</strong> ' + cliente.telefone + '</p>' +
+                        '<p><strong>Instagram:</strong> ' + cliente.instagram + '</p>' +
+                        '<p><strong>Nascimento:</strong> ' + cliente.nasc + '</p>' +
+                        '<p><strong>Aspecto:</strong> ' + cliente.aspecto + '</p>' +
+                        '<p><strong>Cor Natural da Raiz:</strong> ' + cliente.cor_nat_raiz + '</p>' +
+                        '<p><strong>Tem química?</strong> ' + cliente.tem_quimica + '</p>' +
+                        '<p><strong>Faz hidratação?</strong> ' + cliente.faz_tratamentos + '</p>' +
+                        (cliente.faz_tratamentos === 'sim' ? '<p><strong>Com qual frequência?</strong> ' + cliente.frequencia + '</p>' : '') +
+                        '<p><strong>Comprimento:</strong> ' + cliente.comprimento + '</p>' +
+                        '<p><strong>Espessura:</strong> ' + cliente.espessura + '</p>' +
+                        '<p><strong>Densidade:</strong> ' + cliente.densidade + '</p>' +
+                        '<p><strong>Lava o cabelo com qual frequência?</strong> ' + cliente.lava_frequencia + '</p>' +
+                        '<p><strong>Observações:</strong> ' + cliente.obs + '</p>' +
+                        '<p><strong>Procedimentos realizados:</strong> ' + cliente.procedimentos + '</p>' +
+                    '</div><hr>'
+                );
+            }
 
             $('#clienteForm').submit(function(event) {
                 event.preventDefault();
-                let formData = $(this).serialize();
-                $.post('/clientes', formData, function(response) {
-                    alert('Cliente adicionado com sucesso!');
-                    $('#clienteForm')[0].reset();
-                }).fail(function() {
-                    alert('Erro ao adicionar cliente. Por favor, tente novamente.');
-                });
+                var cliente = {
+                    cpf: $('#cpf').val(),
+                    nome: $('#nome').val(),
+                    endereco: $('#endereco').val(),
+                    telefone: $('#telefone').val(),
+                    instagram: $('#instagram').val(),
+                    nasc: $('#nasc').val(),
+                    aspecto: $('#aspecto').val(),
+                    cor_nat_raiz: $('#cor_nat_raiz').val(),
+                    tem_quimica: $('#tem_quimica').val(),
+                    faz_tratamentos: $('#faz_tratamentos').val(),
+                    frequencia: $('#frequencia').val(),
+                    comprimento: $('input[name="comprimento"]:checked').val(),
+                    espessura: $('input[name="espessura"]:checked').val(),
+                    densidade: $('input[name="densidade"]:checked').val(),
+                    lava_frequencia: $('#lava_frequencia').val(),
+                    obs: $('#obs').val(),
+                    procedimentos: $('#procedimentos').val()
+                };
+                adicionarCliente(cliente);
+                this.reset();
+                $('#frequencia-group').addClass('hidden');
+            });
+
+            $('#carregarClientes').click(function() {
+                // Função para carregar clientes
             });
         });
     </script>
-<script>
-    $(document).ready(function() {
-        $('#exportarDados').click(function() {
-            // Aqui você pode colocar o código para exportar os dados
-            let table = $('#clientesList table').clone(); // Clona a tabela já gerada
-
-            // Abre os dados dos clientes em uma nova aba
-            let newWindow = window.open();
-     	    newWindow.document.write('<html><head><title>Dados dos Clientes</title>');
-	    newWindow.document.write('<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
-            newWindow.document.write('</head><body>');
-            newWindow.document.write('<div class="container">');
-            newWindow.document.write('<h1 class="mt-4">Dados dos Clientes</h1>');
-            newWindow.document.write(table.prop('outerHTML'));
-            newWindow.document.write('</div>');
-            newWindow.document.write('</body></html>');
-            newWindow.document.close();
-        });
-
-    });
-</script>
-
 </body>
 </html>
