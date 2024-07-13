@@ -167,11 +167,11 @@
             </div>
             <div class="form-group">
                 <label for="lava_frequencia">Lava o cabelo com qual frequência?</label>
-                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Ex: Diário, Semanal" required>
+                <input type="text" class="form-control" id="lava_frequencia" name="lava_frequencia" placeholder="Digite a frequência que lava o cabelo" required>
             </div>
             <div class="form-group">
                 <label for="obs">Observações:</label>
-                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite observações relevantes"></textarea>
+                <textarea class="form-control" id="obs" name="obs" rows="3" placeholder="Digite observações"></textarea>
             </div>
             <div class="form-group">
                 <label for="procedimentos">Procedimentos realizados:</label>
@@ -222,6 +222,11 @@
                 $('#clientesList').append(clienteHTML);
             }
 
+            function carregarClientes() {
+                const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+                clientes.forEach(cliente => adicionarCliente(cliente));
+            }
+
             $('#clienteForm').submit(function(event) {
                 event.preventDefault();
                 const cliente = {
@@ -243,10 +248,15 @@
                     obs: $('#obs').val(),
                     procedimentos: $('#procedimentos').val()
                 };
+                const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+                clientes.push(cliente);
+                localStorage.setItem('clientes', JSON.stringify(clientes));
                 adicionarCliente(cliente);
                 this.reset();
                 $('#frequencia-group').addClass('hidden');
             });
+
+            carregarClientes();
         });
     </script>
 </body>
