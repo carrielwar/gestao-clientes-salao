@@ -13,7 +13,7 @@
             padding-top: 20px;
         }
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             background: #ffffff;
             padding: 30px;
@@ -28,6 +28,10 @@
             margin-bottom: 30px;
             color: #343a40;
         }
+        .form-control {
+            border-radius: 5px;
+            border-color: #ced4da;
+        }
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
@@ -37,22 +41,15 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .form-check-input {
+            margin-top: 0.3rem;
+            margin-left: -1.25rem;
+        }
+        #clientesList {
             margin-top: 20px;
         }
-        table th, table td {
-            border: 1px solid #dee2e6;
-            padding: 8px;
-            text-align: left;
-        }
-        table th {
-            background-color: #007bff;
-            color: white;
-        }
-        .cliente-details {
-            font-weight: bold;
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -60,74 +57,64 @@
     <div class="container">
         <h1>Ficha de Atendimento do Cliente</h1>
         <form id="clienteForm">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="cpf">CPF:</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="nome">Nome:</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome" required>
-                </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF" required>
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome" required>
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço:</label>
                 <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereço (incluindo CEP)" required>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="instagram">Instagram:</label>
-                    <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Digite o Instagram" required>
-                </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone" required>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nasc">Nascimento:</label>
-                    <input type="date" class="form-control" id="nasc" name="nasc" inputmode="numeric" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="aspecto">Aspecto:</label>
-                    <select class="form-control" id="aspecto" name="aspecto" required>
-                        <option value="misto">Misto</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="instagram">Instagram:</label>
+                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Digite o Instagram" required>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="cor_nat_raiz">Cor Natural da Raiz:</label>
-                    <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz" placeholder="Digite a cor natural da raiz" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="tem_quimica">Tem química?</label>
-                    <select class="form-control" id="tem_quimica" name="tem_quimica" required>
-                        <option value="">Selecione</option>
-                        <option value="sim">Sim</option>
-                        <option value="nao">Não</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="nasc">Nascimento:</label>
+                <input type="date" class="form-control" id="nasc" name="nasc" inputmode="numeric" required>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="faz_tratamentos">Faz hidratação?</label>
-                    <select class="form-control" id="faz_tratamentos" name="faz_tratamentos" required>
-                        <option value="">Selecione</option>
-                        <option value="sim">Sim</option>
-                        <option value="nao">Não</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6 hidden" id="frequencia-group">
-                    <label for="frequencia">Com qual frequência?</label>
-                    <select class="form-control" id="frequencia" name="frequencia">
-                        <option value="semanal">Semanal</option>
-                        <option value="quinzenal">Quinzenal</option>
-                        <option value="mensal">Mensal</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="aspecto">Aspecto:</label>
+                <select class="form-control" id="aspecto" name="aspecto" required>
+                    <option value="misto">Misto</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cor_nat_raiz">Cor Natural da Raiz:</label>
+                <input type="text" class="form-control" id="cor_nat_raiz" name="cor_nat_raiz" placeholder="Digite a cor natural da raiz" required>
+            </div>
+            <div class="form-group">
+                <label for="tem_quimica">Tem química?</label>
+                <select class="form-control" id="tem_quimica" name="tem_quimica" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="faz_tratamentos">Faz hidratação?</label>
+                <select class="form-control" id="faz_tratamentos" name="faz_tratamentos" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="form-group hidden" id="frequencia-group">
+                <label for="frequencia">Com qual frequência?</label>
+                <select class="form-control" id="frequencia" name="frequencia">
+                    <option value="semanal">Semanal</option>
+                    <option value="quinzenal">Quinzenal</option>
+                    <option value="mensal">Mensal</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Comprimento:</label><br>
@@ -192,7 +179,6 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block">Adicionar Cliente</button>
         </form>
-        
         <div id="clientesList"></div>
     </div>
     
@@ -214,85 +200,23 @@
             function adicionarCliente(cliente) {
                 const clienteHTML = `
                     <div class="cliente">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Dados do Cliente</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cliente-details">CPF:</td>
-                                    <td>${cliente.cpf}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Nome:</td>
-                                    <td>${cliente.nome}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Endereço:</td>
-                                    <td>${cliente.endereco}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Telefone:</td>
-                                    <td>${cliente.telefone}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Instagram:</td>
-                                    <td>${cliente.instagram}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Nascimento:</td>
-                                    <td>${cliente.nasc}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Aspecto:</td>
-                                    <td>${cliente.aspecto}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Cor Natural da Raiz:</td>
-                                    <td>${cliente.cor_nat_raiz}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Tem química?</td>
-                                    <td>${cliente.tem_quimica}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Faz hidratação?</td>
-                                    <td>${cliente.faz_tratamentos}</td>
-                                </tr>
-                                ${cliente.faz_tratamentos === 'sim' ? `
-                                    <tr>
-                                        <td class="cliente-details">Com qual frequência?</td>
-                                        <td>${cliente.frequencia}</td>
-                                    </tr>
-                                ` : ''}
-                                <tr>
-                                    <td class="cliente-details">Comprimento:</td>
-                                    <td>${cliente.comprimento}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Espessura:</td>
-                                    <td>${cliente.espessura}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Densidade:</td>
-                                    <td>${cliente.densidade}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Lava o cabelo com qual frequência?</td>
-                                    <td>${cliente.lava_frequencia}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Observações:</td>
-                                    <td>${cliente.obs}</td>
-                                </tr>
-                                <tr>
-                                    <td class="cliente-details">Procedimentos realizados:</td>
-                                    <td>${cliente.procedimentos}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p><strong>CPF:</strong> ${cliente.cpf}</p>
+                        <p><strong>Nome:</strong> ${cliente.nome}</p>
+                        <p><strong>Endereço:</strong> ${cliente.endereco}</p>
+                        <p><strong>Telefone:</strong> ${cliente.telefone}</p>
+                        <p><strong>Instagram:</strong> ${cliente.instagram}</p>
+                        <p><strong>Nascimento:</strong> ${cliente.nasc}</p>
+                        <p><strong>Aspecto:</strong> ${cliente.aspecto}</p>
+                        <p><strong>Cor Natural da Raiz:</strong> ${cliente.cor_nat_raiz}</p>
+                        <p><strong>Tem química?</strong> ${cliente.tem_quimica}</p>
+                        <p><strong>Faz hidratação?</strong> ${cliente.faz_tratamentos}</p>
+                        ${cliente.faz_tratamentos === 'sim' ? `<p><strong>Com qual frequência?</strong> ${cliente.frequencia}</p>` : ''}
+                        <p><strong>Comprimento:</strong> ${cliente.comprimento}</p>
+                        <p><strong>Espessura:</strong> ${cliente.espessura}</p>
+                        <p><strong>Densidade:</strong> ${cliente.densidade}</p>
+                        <p><strong>Lava o cabelo com qual frequência?</strong> ${cliente.lava_frequencia}</p>
+                        <p><strong>Observações:</strong> ${cliente.obs}</p>
+                        <p><strong>Procedimentos realizados:</strong> ${cliente.procedimentos}</p>
                     </div><hr>
                 `;
                 $('#clientesList').append(clienteHTML);
